@@ -3,9 +3,10 @@ name: docker-container-data-processing
 on: [push]
 
 env:
-  ALTERNATIVES_LOG_LOCATION: "/var/log/alternatives.log"
-  ACCESS_LOG_LOCATION: "/var/log/nginx/access.log"
-  ERROR_LOG_LOCATION: "/var/log/nginx/error.log"
+  LOG_FILES_LOCATION: "/var/log"
+  ALTERNATIVES_LOG: "/var/log/alternatives.log"
+  ACCESS_LOG: "/var/log/nginx/access.log"
+  ERROR_LOG: "/var/log/nginx/error.log"
 
 jobs:
   check-bats-version:
@@ -16,7 +17,7 @@ jobs:
         uses: actions/checkout@v3
         
       - name: change directory to log file
-        run: cd ${{ env.ALTERNATIVES_LOG_LOCATION }}
+        run: cd ${{ env.LOG_FILES_LOCATION }}
         
       - name: test
         run: ls
