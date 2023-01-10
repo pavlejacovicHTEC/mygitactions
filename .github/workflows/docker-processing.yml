@@ -14,9 +14,6 @@ jobs:
       
       - name: checkout this repo
         uses: actions/checkout@v3
-      
-      - name: update packages
-        run: apt-get update
         
       - name: change directory to log file
         run: cd ${{ env.ALTERNATIVES_LOG_LOCATION }}
