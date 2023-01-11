@@ -4,7 +4,7 @@ on: [push]
 
 env:
   LOG_FILES_LOCATION: "/var/log"
-  TEST_LOG: "test.log"
+  TEST_LOG: "/var/log/nginx/test.log"
   ACCESS_LOG: "/var/log/nginx/access.log"
   ERROR_LOG: "/var/log/nginx/error.log"
   NGINX_CONTAINER_NAME: "webhost"
@@ -33,9 +33,27 @@ jobs:
             docker container start ${{ env.NGINX_CONTAINER_NAME }}
           fi
         
-      - name: extract wanted logs
+      - name: list all log files
         run: |
          docker exec -i ${{ env.NGINX_CONTAINER_NAME }} ls ${{ env.LOG_FILES_LOCATION }}
-    
+
+      - name: extract test log
+        run: |
+         docker exec -i ${{ env.NGINX_CONTAINER_NAME }} cat ${{ env.TEST_LOG }} > output.log
+         
+      - name: upload log as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: output-log-file
+          path: output.log
+
+      - name: Create comment
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          issue-number: 1
+          body: |
+            This is a multi-line test comment
+            - With GitHub **Markdown** :sparkles:
+            - Created by [create-or-update-comment][1]
         
         
