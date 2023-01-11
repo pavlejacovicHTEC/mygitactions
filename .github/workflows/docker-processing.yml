@@ -23,7 +23,7 @@ jobs:
             echo "nginx container exists"
           else
             echo pokrece se container
-            #docker container run --publish 8080:80 --name webhost -d nginx
+            # docker container run --publish 8080:80 --name webhost -d nginx
           fi
         
       - name: change directory to log file
