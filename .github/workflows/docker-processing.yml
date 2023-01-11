@@ -1,6 +1,6 @@
 name: docker-container-data-processing
 
-on: [push]
+on: [pull_request]
 
 env:
   LOG_FILES_LOCATION: "/var/log"
@@ -47,12 +47,9 @@ jobs:
           name: output-log-file
           path: output.log
 
-      - name: Add comment
-        uses: peter-evans/create-or-update-comment@a35cf36e5301d70b76f316e867e7788a55a31dae
+      - name: Comment current pull request
+        uses: alawiii521/current-pr-comment@v1.0
         with:
-          issue-number: 2
-          body: |
-            This issue is available for anyone to work on. **Make sure to reference this issue in your pull request.** :sparkles: Thank you for your contribution! :sparkles:
-
-
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          comment: test
 
