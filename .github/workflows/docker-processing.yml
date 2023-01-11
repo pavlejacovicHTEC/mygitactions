@@ -1,6 +1,6 @@
 name: docker-container-data-processing
 
-on: [pull_request, workflow_dispatch]
+on: [pull_request, workflow_dispatch ]
 
 env:
   LOG_FILES_LOCATION: "/var/log"
@@ -41,11 +41,11 @@ jobs:
         run: |
          docker exec -i ${{ env.NGINX_CONTAINER_NAME }} cat ${{ env.TEST_LOG }} > output.log
          
-#       - name: upload log as artifact
-#         uses: actions/upload-artifact@v3
-#         with:
-#           name: output-log-file
-#           path: output.log
+      - name: upload log as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: output-log-file
+          path: output.log
 
       - name: Comment current pull request
         if: ${{ github.event_name == 'pull_request'}}
