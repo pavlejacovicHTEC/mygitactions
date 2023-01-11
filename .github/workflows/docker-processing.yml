@@ -1,6 +1,6 @@
 name: docker-container-data-processing
 
-on: [pull_request, workflow_dispatch]
+on: [pull_request, workflow_dispatch ]
 
 env:
   LOG_FILES_LOCATION: "/var/log"
