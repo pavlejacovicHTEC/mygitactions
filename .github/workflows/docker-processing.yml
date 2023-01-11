@@ -48,8 +48,8 @@ jobs:
           path: output.log
 
       - name: Comment current pull request
-        uses: alawiii521/current-pr-comment@v1.0
+        uses: thollander/actions-comment-pull-request@v2
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          comment: test
+          filePath: output.log
 
