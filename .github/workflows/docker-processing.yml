@@ -35,7 +35,7 @@ jobs:
         
       - name: extract wanted logs
         run: |
-         docker exec -it ${{ env.NGINX_CONTAINER_NAME }} bash
+         docker exec -i ${{ env.NGINX_CONTAINER_NAME }} bash
          cd ${{ env.LOG_FILES_LOCATION }}/
          ls
     
