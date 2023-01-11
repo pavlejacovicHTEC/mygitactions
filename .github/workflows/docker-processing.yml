@@ -7,6 +7,7 @@ env:
   ALTERNATIVES_LOG: "/var/log/alternatives.log"
   ACCESS_LOG: "/var/log/nginx/access.log"
   ERROR_LOG: "/var/log/nginx/error.log"
+  NGINX_CONTAINER_NAME: "webhost"
 
 jobs:
   check-bats-version:
@@ -15,6 +16,15 @@ jobs:
       
       - name: checkout this repo
         uses: actions/checkout@v3
+        
+      - name: run docker nginx container
+        run: |
+          if [ $( docker ps -a -f name=${{ env.NGINX_CONTAINER_NAME }} | wc -l ) -eq 2 ]; then
+            echo "nginx container exists"
+          else
+            echo pokrece se container
+            #docker container run --publish 8080:80 --name webhost -d nginx
+          fi
         
       - name: change directory to log file
         run: |
