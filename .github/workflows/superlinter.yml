@@ -1,6 +1,8 @@
 name: Space-Linter
 
-on: push
+on:
+  schedule:
+    - cron: "*/1 * * * 1-6"
 
 jobs:
   super-lint:
