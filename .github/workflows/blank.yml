@@ -19,12 +19,12 @@ jobs:
       - name: Checkout repo1
         uses: actions/checkout@v3
         with:
-          repository: "pavlejacovicHTEC/Python_tasks"
+          repository: "pavlejacovicHTEC/Bash_Tasks_Snippets"
           path: ./test-path
   
       - name: Checkout repo2
         uses: actions/checkout@v3
         with:
-          repository: "pavlejacovicHTEC/Bash_Tasks_Snippets"
+          repository: "pavlejacovicHTEC/Python_tasks"
           path: ./test-path
   
