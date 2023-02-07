@@ -1,10 +1,7 @@
 name: First Cron Job
 
        # Controls when the workflow will run
-on:
-  # Triggers the workflow every 5 minutes
-  schedule:
-    - cron: "*/5 * * * *"
+on: push
 
      # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -18,3 +15,16 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
+      
+      - name: Checkout repo1
+        uses: actions/checkout@v3
+        with:
+          repository: "pavlejacovicHTEC/Python_tasks"
+          path: ./test-path
+  
+      - name: Checkout repo2
+        uses: actions/checkout@v3
+        with:
+          repository: "pavlejacovicHTEC/Bash_Tasks_Snippets"
+          path: ./test-path
+  
